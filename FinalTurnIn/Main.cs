@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace FinalTurnIn
 {
@@ -247,7 +248,10 @@ namespace FinalTurnIn
             gridPen.Dispose();
             cellBrush.Dispose();
         }
-
+        public bool[,] GetGrid()//
+        {
+            return newUniverse;
+        }
         private void PlayButton_Click(object sender, EventArgs e)
         {
             if (timer.Enabled == false)
@@ -424,14 +428,13 @@ namespace FinalTurnIn
                     graphicsPanel1.Invalidate();
                 }
             }
-            timerIntervals = OptionsMenu.timec;//Not finished
+            //timer.Interval = OptionsMenu.timec;//Not finished
             cells = 0;
             CellAlive.Text = "Alive: 0";
             CellLabelHUD.Text = "Cell Count: 0";
             graphicsPanel1.Invalidate();
 
-            //timerIntervals = OptionsMenu.timec;
-            //graphicsPanel1.Invalidate();
+            timer.Interval = OptionsMenu.timec;
         }
 
         private void GenerationLabelHUD_Click(object sender, EventArgs e)
@@ -538,6 +541,210 @@ namespace FinalTurnIn
             }
         }
 
+        private void SaveFile()
+        {
+            int x = 0;
+            int y = 0;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.DefaultExt = "cells";
+
+            saveFileDialog1.Title = "Saving The Universe.";
+
+            saveFileDialog1.Filter = "Cells and texts Files (*.txt),(*.cells)|*.txt,*.cells|All files (*.*)|*.*";
+
+
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+
+                StreamWriter sw = new StreamWriter(saveFileDialog1.FileName);
+
+                sw.WriteLine("!Name: " + Path.GetFileNameWithoutExtension(saveFileDialog1.FileName));
+                sw.WriteLine("!");
+
+
+                for (y = 0; y < universe.GetLength(1); y++)
+                {
+
+                    if (y > 0)
+                    {
+                        sw.WriteLine();
+                    }
+
+
+
+                    for (x = 0; x < universe.GetLength(0); x++)
+                    {
+
+
+
+                        if (universe[x, y] == false)
+                        {
+                            sw.Write(".");
+                        }
+
+                        else
+                        {
+                            sw.Write("O");
+                        }
+                    }
+
+                }
+
+
+                sw.Close();
+
+            }
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            SaveFile();
+        }
+        private void OpenFile()
+        {
+            string line = "";
+            int counterY = 0;
+            int lineX = 0;
+
+            OpenFileDialog openfile = new OpenFileDialog();
+
+            openfile.DefaultExt = "cells";
+
+            openfile.Title = "Opening the Universe.";
+
+            openfile.Filter = "cells files (*.cells)|*.cells|Text Files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            openfile.CheckPathExists = true;
+
+
+            if (openfile.ShowDialog() == DialogResult.OK)
+            {
+                Stream s = new MemoryStream();
+                StreamReader sr = new StreamReader(openfile.FileName);
+
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (line[0] == '!')
+                    {
+                        continue;
+                    }
+
+                    else if (line[1] == '!')
+                    {
+                        continue;
+                    }
+
+                    lineX = line.Length;
+
+
+                    counterY++;
+                }
+
+
+                sr.Close();
+
+
+                universe = new bool[lineX, counterY];
+                newUniverse = new bool[lineX, counterY];
+
+
+                lineX--;
+                counterY = 0;
+
+
+                StreamReader st = new StreamReader(openfile.FileName);
+
+                while ((line = st.ReadLine()) != null)
+                {
+                    if (line[0] == '!')
+                    {
+                        continue;
+                    }
+
+
+                    for (int x = 0; x < lineX; x++)
+                    {
+
+                        if (line[x] == '.')
+                        {
+                            universe[x, counterY] = false;
+                        }
+
+                        else if (line[x] == 'O')
+                        {
+                            universe[x, counterY] = true;
+                        }
+
+                    }
+
+                    counterY++;
+
+
+
+                }
+                st.Close();
+
+            }
+
+
+            graphicsPanel1.Invalidate();
+        }
+        private void OpenButton_Click(object sender, EventArgs e)
+        {
+            OpenFile();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFile();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFile();
+        }
+
+        private void RandomizeGrid_Click(object sender, EventArgs e)
+        {
+            int actual_state;
+            Random rand = new Random();
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+
+                    actual_state = rand.Next(0, 2);
+
+                    if (actual_state == 0)
+                    {
+                        universe[x, y] = false;
+                    }
+                    else
+                    {
+                        universe[x, y] = true;
+                    }
+                }
+            }
+            graphicsPanel1.Invalidate();
+        }
+
+        private void RandomizeCell_Click(object sender, EventArgs e)
+        {
+            Random rand = new Random();
+            int x = rand.Next(0, universe.GetLength(0));
+            int y = rand.Next(0, universe.GetLength(1));
+            universe[x, y] = !universe[x, y];
+            graphicsPanel1.Invalidate();
+        }
+
+        private void RandomFromSeed_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void UniverseSizeHUDToggle_Click(object sender, EventArgs e)
         {
             if (UniverseSizeHUDToggle.Checked == true)
@@ -552,10 +759,7 @@ namespace FinalTurnIn
             }
         }
 
-        public bool[,] GetGrid()
-        {
-            return newUniverse;
-        }
+        
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
         {
             // If the left mouse button was clicked
@@ -608,7 +812,7 @@ namespace FinalTurnIn
                     }
                     if (xCheck < 0)
                     {
-                        xCheck = yLen - 1;
+                        xCheck = xLen - 1;
                     }
                     if (yCheck < 0)
                     {
@@ -699,11 +903,7 @@ namespace FinalTurnIn
         }
         private void Randomize()
         {
-            Random rand = new Random();
-            int x = rand.Next(0, universe.GetLength(0));
-            int y = rand.Next(0, universe.GetLength(1));
-            universe[x, y] = !universe[x, y];
-            graphicsPanel1.Invalidate();
+            
         }
         
     }

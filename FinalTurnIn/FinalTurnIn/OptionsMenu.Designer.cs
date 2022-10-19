@@ -30,17 +30,17 @@ namespace FinalTurnIn
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.DoneButton = new System.Windows.Forms.Button();
-            this.TimerVal = new System.Windows.Forms.NumericUpDown();
-            this.WidthVal = new System.Windows.Forms.NumericUpDown();
-            this.HeightVal = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.WidthOfGrid = new System.Windows.Forms.Label();
             this.HeightOfGrid = new System.Windows.Forms.Label();
+            this.WidthOfGrid = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.HeightVal = new System.Windows.Forms.NumericUpDown();
+            this.WidthVal = new System.Windows.Forms.NumericUpDown();
+            this.TimerVal = new System.Windows.Forms.NumericUpDown();
+            this.DoneButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TimerVal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.WidthVal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeightVal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WidthVal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimerVal)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -58,16 +58,77 @@ namespace FinalTurnIn
             this.panel1.Size = new System.Drawing.Size(222, 193);
             this.panel1.TabIndex = 0;
             // 
-            // DoneButton
+            // HeightOfGrid
             // 
-            this.DoneButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.DoneButton.Location = new System.Drawing.Point(71, 142);
-            this.DoneButton.Name = "DoneButton";
-            this.DoneButton.Size = new System.Drawing.Size(85, 34);
-            this.DoneButton.TabIndex = 8;
-            this.DoneButton.Text = "Done";
-            this.DoneButton.UseVisualStyleBackColor = false;
-            this.DoneButton.Click += new System.EventHandler(this.DoneButton_Click);
+            this.HeightOfGrid.AutoSize = true;
+            this.HeightOfGrid.Location = new System.Drawing.Point(15, 25);
+            this.HeightOfGrid.Name = "HeightOfGrid";
+            this.HeightOfGrid.Size = new System.Drawing.Size(72, 13);
+            this.HeightOfGrid.TabIndex = 0;
+            this.HeightOfGrid.Text = "Height of Grid";
+            // 
+            // WidthOfGrid
+            // 
+            this.WidthOfGrid.AutoSize = true;
+            this.WidthOfGrid.Location = new System.Drawing.Point(15, 67);
+            this.WidthOfGrid.Name = "WidthOfGrid";
+            this.WidthOfGrid.Size = new System.Drawing.Size(69, 13);
+            this.WidthOfGrid.TabIndex = 1;
+            this.WidthOfGrid.Text = "Width of Grid";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 106);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Time in milliseconds";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // HeightVal
+            // 
+            this.HeightVal.Location = new System.Drawing.Point(146, 23);
+            this.HeightVal.Maximum = new decimal(new int[] {
+            70,
+            0,
+            0,
+            0});
+            this.HeightVal.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.HeightVal.Name = "HeightVal";
+            this.HeightVal.Size = new System.Drawing.Size(62, 20);
+            this.HeightVal.TabIndex = 3;
+            this.HeightVal.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // WidthVal
+            // 
+            this.WidthVal.Location = new System.Drawing.Point(146, 60);
+            this.WidthVal.Maximum = new decimal(new int[] {
+            70,
+            0,
+            0,
+            0});
+            this.WidthVal.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.WidthVal.Name = "WidthVal";
+            this.WidthVal.Size = new System.Drawing.Size(62, 20);
+            this.WidthVal.TabIndex = 4;
+            this.WidthVal.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // TimerVal
             // 
@@ -96,77 +157,16 @@ namespace FinalTurnIn
             0,
             0});
             // 
-            // WidthVal
+            // DoneButton
             // 
-            this.WidthVal.Location = new System.Drawing.Point(146, 60);
-            this.WidthVal.Maximum = new decimal(new int[] {
-            70,
-            0,
-            0,
-            0});
-            this.WidthVal.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.WidthVal.Name = "WidthVal";
-            this.WidthVal.Size = new System.Drawing.Size(62, 20);
-            this.WidthVal.TabIndex = 4;
-            this.WidthVal.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            // 
-            // HeightVal
-            // 
-            this.HeightVal.Location = new System.Drawing.Point(146, 23);
-            this.HeightVal.Maximum = new decimal(new int[] {
-            70,
-            0,
-            0,
-            0});
-            this.HeightVal.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.HeightVal.Name = "HeightVal";
-            this.HeightVal.Size = new System.Drawing.Size(62, 20);
-            this.HeightVal.TabIndex = 3;
-            this.HeightVal.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 106);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Time in milliseconds";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // WidthOfGrid
-            // 
-            this.WidthOfGrid.AutoSize = true;
-            this.WidthOfGrid.Location = new System.Drawing.Point(15, 67);
-            this.WidthOfGrid.Name = "WidthOfGrid";
-            this.WidthOfGrid.Size = new System.Drawing.Size(69, 13);
-            this.WidthOfGrid.TabIndex = 1;
-            this.WidthOfGrid.Text = "Width of Grid";
-            // 
-            // HeightOfGrid
-            // 
-            this.HeightOfGrid.AutoSize = true;
-            this.HeightOfGrid.Location = new System.Drawing.Point(15, 25);
-            this.HeightOfGrid.Name = "HeightOfGrid";
-            this.HeightOfGrid.Size = new System.Drawing.Size(72, 13);
-            this.HeightOfGrid.TabIndex = 0;
-            this.HeightOfGrid.Text = "Height of Grid";
+            this.DoneButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.DoneButton.Location = new System.Drawing.Point(71, 142);
+            this.DoneButton.Name = "DoneButton";
+            this.DoneButton.Size = new System.Drawing.Size(85, 34);
+            this.DoneButton.TabIndex = 8;
+            this.DoneButton.Text = "Done";
+            this.DoneButton.UseVisualStyleBackColor = false;
+            this.DoneButton.Click += new System.EventHandler(this.DoneButton_Click);
             // 
             // OptionsMenu
             // 
@@ -178,9 +178,9 @@ namespace FinalTurnIn
             this.Text = "OptionsMenu";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TimerVal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.WidthVal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HeightVal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WidthVal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TimerVal)).EndInit();
             this.ResumeLayout(false);
 
         }
