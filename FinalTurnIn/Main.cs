@@ -13,8 +13,8 @@ namespace FinalTurnIn
 {
     public partial class Main : Form
     {
-        private static int myX, myY, timerIntervals = 1000, cells = 0, generations = 0;
-        bool numbersOn = true, gridOn = true, isTor = true;
+        private static int myX, myY, timerIntervals = 1000, cells = 0, generations = 0; //myX and myY are the dimensions, timerIntervals controls the time between each generation, cells and generations are the # of active cells and generations in the universe
+        bool numbersOn = true, gridOn = true, isTor = false;//numbersOn controls the numbers displayed, gridOn controls the lines on the grid, and isTor controls whether the universe is played in Toroidal or Finite
         // The universe array
         bool[,] universe = new bool[myX = 20, myY = 20];
         bool[,] newUniverse = new bool[myX, myY];
@@ -76,6 +76,7 @@ namespace FinalTurnIn
                     }
                     if (isTor == false)
                     {
+
                         int count = CountNeighborsFinite(x, y);
 
                         if (universe[x, y])
@@ -107,6 +108,7 @@ namespace FinalTurnIn
 
                 }
             }
+            //Swapping the universe
             bool[,] temp = universe;
             universe = newUniverse;
             newUniverse = temp;
@@ -131,7 +133,7 @@ namespace FinalTurnIn
             }
             if (tr == 0)
             {
-                CellAlive.Text = "Alive: 0";
+                CellAlive.Text = "Alive: 0";// For *all* of the lines that contain ".Text" This changes the amount of the text of the cells, generations, and HUD
                 CellLabelHUD.Text = "Cell Count: " + cells.ToString();
             }
 
@@ -151,7 +153,7 @@ namespace FinalTurnIn
         private void CellAlive_Click(object sender, EventArgs e)
         {
 
-        }
+        }//Empty
 
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -210,7 +212,7 @@ namespace FinalTurnIn
                             }
                         }
                     }
-                    else if (isTor == false)
+                    else if (isTor == false)//Switches between Finite and Toroidal
                     {
                         if (CountNeighborsFinite(x, y) != 0 && numbersOn == true)
                         {
@@ -247,8 +249,8 @@ namespace FinalTurnIn
             // Cleaning up pens and brushes
             gridPen.Dispose();
             cellBrush.Dispose();
-        }
-        public bool[,] GetGrid()//
+        }//Controls paint of the grid
+        public bool[,] GetGrid()//returns newUniverse
         {
             return newUniverse;
         }
@@ -260,7 +262,7 @@ namespace FinalTurnIn
                 PlayButton.Enabled = false;
                 PauseButton.Enabled = true;
             }
-        }
+        }//Plays the grid
 
         private void PauseButton_Click(object sender, EventArgs e)
         {
@@ -270,7 +272,7 @@ namespace FinalTurnIn
                 PlayButton.Enabled = true;
                 PauseButton.Enabled = false;
             }
-        }
+        }//Pauses the grid
 
         private int Check(int x, int y)
         {
@@ -298,12 +300,12 @@ namespace FinalTurnIn
                 count++;
 
             return count;
-        }
+        }//Unused
 
         private void GenerationCount_Click(object sender, EventArgs e)
         {
 
-        }
+        }//Empty
 
         private void GridLineButton_Click(object sender, EventArgs e)
         {
@@ -313,7 +315,7 @@ namespace FinalTurnIn
                 gridColor = color;
                 graphicsPanel1.Invalidate();
             }
-        }
+        }//Changes color of Gridline
 
         private void GridCellButton_Click(object sender, EventArgs e)
         {
@@ -323,7 +325,7 @@ namespace FinalTurnIn
                 cellColor = color;
                 graphicsPanel1.Invalidate();
             }
-        }
+        }//Changes color of Grid Cell
 
         private void BackgroundButton_Click(object sender, EventArgs e)
         {
@@ -333,12 +335,12 @@ namespace FinalTurnIn
                 this.graphicsPanel1.BackColor = color;
                 graphicsPanel1.Invalidate();
             }
-        }
+        }//Changes the color of the background
 
         private void RandomizeButton_Click(object sender, EventArgs e)
         {
             Randomize();
-        }
+        }//Randomizes the universe
 
         private void NeighborCountShow_Click(object sender, EventArgs e)
         {
@@ -353,7 +355,7 @@ namespace FinalTurnIn
                 numbersOn = true;
             }
             graphicsPanel1.Invalidate();
-        }
+        }//Turns the number display on and off
 
         private void GridShow_Click(object sender, EventArgs e)
         {
@@ -369,17 +371,17 @@ namespace FinalTurnIn
                 gridOn = true;
                 graphicsPanel1.Invalidate();
             }
-        }
+        }//Turns the grid display on and off
 
         private void NextButton_Click(object sender, EventArgs e)
         {
             NextGeneration();
-        }
+        }//Displays the next generation
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
             Clear();
-        }
+        }//Clears the grid
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
@@ -408,12 +410,12 @@ namespace FinalTurnIn
             UniverseSizeLabelHUD.Visible = true;
             //gridOn = true;
             graphicsPanel1.Invalidate();
-        }
+        }//Resets the grid back to its base level
 
         private void OptionsButton_Click(object sender, EventArgs e)
         {
             OptionsMenu om = new OptionsMenu();
-            om.ShowDialog();
+            om.ShowDialog();//Shows options dialog
             bool[,] editedUniverse = new bool[OptionsMenu.xf2, OptionsMenu.yf2];
             bool[,] temp = universe;
             universe = editedUniverse;
@@ -435,12 +437,12 @@ namespace FinalTurnIn
             graphicsPanel1.Invalidate();
 
             timer.Interval = OptionsMenu.timec;
-        }
+        }//Controls what happens after the "done" button is pressed on the options dialog
 
         private void GenerationLabelHUD_Click(object sender, EventArgs e)
         {
             
-        }
+        }//Empty
 
         private void HUDButton_Click(object sender, EventArgs e)
         {
@@ -468,12 +470,12 @@ namespace FinalTurnIn
                 BoundaryTypeHUDToggle.Checked = true;
                 UniverseSizeHUDToggle.Checked = true;
             }
-        }
+        }//Turns HUD on and off
 
         private void CellLabelHUD_Click(object sender, EventArgs e)
         {
 
-        }
+        }//Empty
 
         private void ToroidalButton_Click(object sender, EventArgs e)
         {
@@ -482,22 +484,24 @@ namespace FinalTurnIn
                 ToroidalButton.Checked = true;
                 FiniteButton.Checked = false;
                 isTor = true;
+                BoundaryTypeHUD.Text = "Boundary Type: Toroidal";
                 graphicsPanel1.Invalidate();
             }
             
-        }
+        }//Sets grid to Toroidal
 
-        private void FiniteButton_Click(object sender, EventArgs e)
+        private void FiniteButton_Click(object sender, EventArgs e)//Sets grid to Finite
         {
             if (FiniteButton.Checked == false)
             {
                 FiniteButton.Checked = true;
                 ToroidalButton.Checked = false;
                 isTor = false;
+                BoundaryTypeHUD.Text = "Boundary Type: Finite";
                 graphicsPanel1.Invalidate();
             }
             
-        }
+        }//Sets grid to Finite
 
         private void GenHUDToggle_Click(object sender, EventArgs e)
         {
@@ -511,7 +515,7 @@ namespace FinalTurnIn
                 GenHUDToggle.Checked = true;
                 GenerationLabelHUD.Visible = true;
             }
-        }
+        }//Turns Generation HUD on and off
 
         private void CellCountHUDToggle_Click(object sender, EventArgs e)
         {
@@ -525,7 +529,7 @@ namespace FinalTurnIn
                 CellCountHUDToggle.Checked = true;
                 CellLabelHUD.Visible = true;
             }
-        }
+        }//Turns cell count HUD on and off
 
         private void BoundaryTypeHUDToggle_Click(object sender, EventArgs e)
         {
@@ -539,7 +543,7 @@ namespace FinalTurnIn
                 BoundaryTypeHUDToggle.Checked = true;
                 BoundaryTypeHUD.Visible = true;
             }
-        }
+        }//Turns Boundary Type on and off
 
         private void SaveFile()
         {
@@ -596,12 +600,12 @@ namespace FinalTurnIn
                 sw.Close();
 
             }
-        }
+        }//Saves grid to .txt file
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
             SaveFile();
-        }
+        }//Saves grid
         private void OpenFile()
         {
             string line = "";
@@ -691,21 +695,21 @@ namespace FinalTurnIn
 
 
             graphicsPanel1.Invalidate();
-        }
+        }//Opens .txt file
         private void OpenButton_Click(object sender, EventArgs e)
         {
             OpenFile();
-        }
+        }//Opens File
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFile();
-        }
+        }//Opens File
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFile();
-        }
+        }//Saves File
 
         private void RandomizeGrid_Click(object sender, EventArgs e)
         {
@@ -729,7 +733,7 @@ namespace FinalTurnIn
                 }
             }
             graphicsPanel1.Invalidate();
-        }
+        }//Randomizes the entire grid
 
         private void RandomizeCell_Click(object sender, EventArgs e)
         {
@@ -738,13 +742,7 @@ namespace FinalTurnIn
             int y = rand.Next(0, universe.GetLength(1));
             universe[x, y] = !universe[x, y];
             graphicsPanel1.Invalidate();
-        }
-
-        private void RandomFromSeed_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        }//Randomizes one cell
         private void UniverseSizeHUDToggle_Click(object sender, EventArgs e)
         {
             if (UniverseSizeHUDToggle.Checked == true)
@@ -757,7 +755,7 @@ namespace FinalTurnIn
                 UniverseSizeHUDToggle.Checked = true;
                 UniverseSizeLabelHUD.Visible = true;
             }
-        }
+        }//Turns Universe Size HUD on and off
 
         
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
@@ -793,7 +791,7 @@ namespace FinalTurnIn
                 // Tell Windows you need to repaint
                 graphicsPanel1.Invalidate();
             }
-        }
+        }//Mouse click actions on each cell
         private int CountNeighborsToroidal(int x, int y)
         {
             int count = 0;
@@ -834,7 +832,7 @@ namespace FinalTurnIn
                 }
             }
             return count;
-        }
+        }//Behavior of grid (Toroidal)
         private int CountNeighborsFinite(int x, int y)
         {
             int count = 0;
@@ -875,7 +873,7 @@ namespace FinalTurnIn
                 }
             }
             return count;
-        }
+        }//Behavior of grid (Finite)
         private void Clear()
         {
             string message = "Are you sure you want to clear the grid?";
@@ -900,11 +898,11 @@ namespace FinalTurnIn
             {
 
             }
-        }
+        }//Clears the entire grid
         private void Randomize()
         {
             
-        }
+        }//Empty
         
     }
 }

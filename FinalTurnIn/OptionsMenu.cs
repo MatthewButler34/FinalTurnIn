@@ -21,18 +21,18 @@ namespace FinalTurnIn
         private void label3_Click(object sender, EventArgs e)
         {
 
-        }
+        }//Empty
 
         public void DoneButton_Click(object sender, EventArgs e)
         {
             decimal hdec = HeightVal.Value;
-            int hint = Convert.ToInt32(hdec);
+            int hint = Convert.ToInt32(hdec);//converts Height value to int
 
             decimal wdec = WidthVal.Value;
-            int wint = Convert.ToInt32(wdec);
+            int wint = Convert.ToInt32(wdec);//converts Width value to int
 
             decimal timeDec = TimerVal.Value;
-            int timeint = Convert.ToInt32(timeDec);
+            int timeint = Convert.ToInt32(timeDec);//converts Timer value to int
 
             if (DoneButton.Enabled == true)
             {

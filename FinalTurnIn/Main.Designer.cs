@@ -48,6 +48,8 @@ namespace FinalTurnIn
             this.ToroidalButton = new System.Windows.Forms.ToolStripMenuItem();
             this.FiniteButton = new System.Windows.Forms.ToolStripMenuItem();
             this.RandomizeButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.RandomizeCell = new System.Windows.Forms.ToolStripMenuItem();
+            this.RandomizeGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsButton = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionsButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ChangeColorsButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,8 +75,6 @@ namespace FinalTurnIn
             this.BoundaryTypeHUD = new System.Windows.Forms.Label();
             this.CellLabelHUD = new System.Windows.Forms.Label();
             this.GenerationLabelHUD = new System.Windows.Forms.Label();
-            this.RandomizeCell = new System.Windows.Forms.ToolStripMenuItem();
-            this.RandomizeGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -111,14 +111,14 @@ namespace FinalTurnIn
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(154, 30);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(151, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -126,7 +126,7 @@ namespace FinalTurnIn
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(154, 30);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -248,6 +248,20 @@ namespace FinalTurnIn
             this.RandomizeButton.Size = new System.Drawing.Size(78, 20);
             this.RandomizeButton.Text = "&Randomize";
             this.RandomizeButton.Click += new System.EventHandler(this.RandomizeButton_Click);
+            // 
+            // RandomizeCell
+            // 
+            this.RandomizeCell.Name = "RandomizeCell";
+            this.RandomizeCell.Size = new System.Drawing.Size(158, 22);
+            this.RandomizeCell.Text = "Randomize cell";
+            this.RandomizeCell.Click += new System.EventHandler(this.RandomizeCell_Click);
+            // 
+            // RandomizeGrid
+            // 
+            this.RandomizeGrid.Name = "RandomizeGrid";
+            this.RandomizeGrid.Size = new System.Drawing.Size(158, 22);
+            this.RandomizeGrid.Text = "Randomize Grid";
+            this.RandomizeGrid.Click += new System.EventHandler(this.RandomizeGrid_Click);
             // 
             // SettingsButton
             // 
@@ -459,9 +473,9 @@ namespace FinalTurnIn
             this.BoundaryTypeHUD.AutoSize = true;
             this.BoundaryTypeHUD.Location = new System.Drawing.Point(12, 215);
             this.BoundaryTypeHUD.Name = "BoundaryTypeHUD";
-            this.BoundaryTypeHUD.Size = new System.Drawing.Size(115, 17);
+            this.BoundaryTypeHUD.Size = new System.Drawing.Size(128, 17);
             this.BoundaryTypeHUD.TabIndex = 2;
-            this.BoundaryTypeHUD.Text = "Boundary Type: Finite";
+            this.BoundaryTypeHUD.Text = "Boundary Type: Toroidal";
             this.BoundaryTypeHUD.UseCompatibleTextRendering = true;
             // 
             // CellLabelHUD
@@ -485,20 +499,6 @@ namespace FinalTurnIn
             this.GenerationLabelHUD.Text = "Generations: 0";
             this.GenerationLabelHUD.UseCompatibleTextRendering = true;
             this.GenerationLabelHUD.Click += new System.EventHandler(this.GenerationLabelHUD_Click);
-            // 
-            // RandomizeCell
-            // 
-            this.RandomizeCell.Name = "RandomizeCell";
-            this.RandomizeCell.Size = new System.Drawing.Size(180, 22);
-            this.RandomizeCell.Text = "Randomize cell";
-            this.RandomizeCell.Click += new System.EventHandler(this.RandomizeCell_Click);
-            // 
-            // RandomizeGrid
-            // 
-            this.RandomizeGrid.Name = "RandomizeGrid";
-            this.RandomizeGrid.Size = new System.Drawing.Size(180, 22);
-            this.RandomizeGrid.Text = "Randomize Grid";
-            this.RandomizeGrid.Click += new System.EventHandler(this.RandomizeGrid_Click);
             // 
             // Main
             // 
